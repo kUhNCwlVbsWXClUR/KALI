@@ -119,5 +119,11 @@ serverSlots1 = 32
 
 
 ## step 7.
+```bash
+apt-get update
+apt-get install -y virtualbox-guest-x11
+reboot
+sudo apt-get install virtualbox
+```
 ## step 8.
 ## step 9.
