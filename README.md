@@ -126,4 +126,34 @@ reboot
 sudo apt-get install virtualbox
 ```
 ## step 8.
+# proxy file
+start(){
+    sslocal -c /etc/shadowsocks.json -d start --pid-file ~/.ss.pid --log-file ~/.ss.log
+    gsettings set org.gnome.system.proxy.http host 'localhost'
+    gsettings set org.gnome.system.proxy.http port 8123
+    gsettings set org.gnome.system.proxy mode 'manual'
+}
+stop(){
+    sslocal -c /etc/shadowsocks.json -d stop --pid-file ~/.ss.pid --log-file ~/.ss.log
+    gsettings set org.gnome.system.proxy mode 'none'
+}
+restart(){
+    stop
+    start
+}
+
+case "$1" in 
+    "start")
+        start
+        ;;
+    "stop")
+        stop
+        ;;
+    "restart")
+        restart
+        ;;
+    *)
+        echo "$0 start|stop|restart"
+esac
+
 ## step 9.
