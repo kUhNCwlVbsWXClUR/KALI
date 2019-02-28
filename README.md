@@ -200,6 +200,7 @@ function FindProxyForURL(url, host){
 		return "DIRECT";
 	}
 	return "DIRECT; PROXY 192.168.99.97:8123; SOCK5 192.168.99.197:1080";
+}
 
 ```
 
