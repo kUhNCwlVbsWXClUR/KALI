@@ -180,4 +180,27 @@ esac
 sudo chmod u+x /usr/bin/proxy
 ```
 
-## step 9.
+## step 9. 将代理设置为自动模式pac: proxy auto conf
+
+```sh
+touch ~/auto.pac
+```
+
+```js
+/*proxy auto config*/
+
+function FindProxyForURL(url, host){
+	if (shExpMatch(url, "*.google.com/*")){  //当url是*.google.com/* 时，自动使用PROXY代理；
+		return "PROXY 192.168.99.97:8123";
+	}
+	if (shExpMatch(url, "*.wikipedia.com:*/*")){  //当url是*.wikipedia.cm/*时，自动使用SOCKS5代理
+		return "SOCK5 192.168.99.97:8123";
+	}
+	if (isInNet(host, "192.0.0.0", "255.0.0.0")){  //当host是10.0.0.0 /255.0.0.0的子网内时，自动直连；
+		return "DIRECT";
+	}
+	return "DIRECT; PROXY 192.168.99.97:8123; SOCK5 192.168.99.197:1080";
+
+```
+
+
